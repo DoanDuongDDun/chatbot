@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Laptop AI</title>
+</head>
+<body>
+<h2>🤖 Laptop AI</h2>
+<div id="chat"></div>
+<input id="msg">
+<button onclick="send()">Gửi</button>
+
+<script>
+let session_id = null;
+
+async function send(){
+  let msg = document.getElementById("msg").value;
+  let res = await fetch("/chat", {
+    method:"POST",
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({message:msg, session_id})
+  });
+  let data = await res.json();
+  session_id = data.session_id;
+  document.getElementById("chat").innerHTML += "<p><b>Bạn:</b> "+msg+"</p>";
+  document.getElementById("chat").innerHTML += "<p><b>Bot:</b> "+data.reply+"</p>";
+}
+</script>
+</body>
+</html>

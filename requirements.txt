@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pandas
+openpyxl
+sentence-transformers
+faiss-cpu
+python-dotenv
+google-generativeai
+jinja2
